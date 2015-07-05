@@ -9,8 +9,8 @@ import pandas as pd
 import math
 
 class Model:
-	def loadCSV(self, filename, outputCol):
-		self.data = pd.read_csv(filename)
+	def loadCSV(self, filename, outputCol, delimeter=','):
+		self.data = pd.read_csv(filename, sep=delimeter)
 		self.outputCol = outputCol
 
 	def majority(self, dataset, targetAttribute):
