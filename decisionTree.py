@@ -1,4 +1,4 @@
-# This is a port of existing code to use numpy/pandas
+# This is a port of existing code to use pandas (http://pandas.pydata.org/)
 # http://www.csse.monash.edu.au/courseware/cse5230/2004/assets/decisiontreesTute.pdf
 # https://github.com/NinjaSteph/DecisionTree/blob/master/src/DecisionTree.py
 # http://www.jdxyw.com/?p=2095
@@ -9,18 +9,18 @@ import pandas as pd
 import math
 
 class DecisionTree:
-	def __init__(self, filename, outputCol):
-		self.outputCol = outputCol
+	def loadCSV(self, filename, outputCol):
 		self.data = pd.read_csv(filename)
+		self.outputCol = outputCol
 
 	def entropy(self, dataset, targetAttribute):
-		dataEntropy = 0.0
+		e = 0.0
 		length = len(dataset.index)
 
 		for freq in dataset[targetAttribute].value_counts():
-			dataEntropy += (-freq/length) * math.log(freq/length, 2) 
+			e += (-freq/length) * math.log(freq/length, 2) 
 
-		return dataEntropy
+		return e
 
 	def gain(self, dataset, targetAttribute):
 		valueFrequencies = dataset[targetAttribute].value_counts()
@@ -64,10 +64,32 @@ class DecisionTree:
 			tree = {best:{}}
 			for val in dataset[best]:
 				examples = dataset[dataset[best] == val]
+				examples = examples.drop(best, 1)
 				subtree = self.buildTree(examples)
 
 				tree[best][val] = subtree
 		return tree
 
 	def createTree(self):
-		return self.buildTree(self.data)
+		self.tree = self.buildTree(self.data)
+
+	def predict(self, row):
+		pass
+
+	def predict(self, data):
+		predictions = []
+		for row in data:
+			predictions.append(self.predict(row))
+		return predictions
+
+	def exportTree(self):
+		return self.tree
+
+	def saveTree(self):
+		pass
+
+	def loadTree(self):
+		pass
+
+	def addData(self, data):
+		pass

@@ -1,4 +1,9 @@
 from decisionTree import DecisionTree
 
-x = DecisionTree('data.csv', 'play')
-print x.createTree()
+x = DecisionTree()
+x.loadCSV('data.csv', 'play')
+x.createTree()
+
+# print x.predict([3,4,5])
+
+print x.exportTree()
