@@ -73,13 +73,13 @@ class DecisionTree:
 	def createTree(self):
 		self.tree = self.buildTree(self.data)
 
-	def predict(self, row):
+	def predictRow(self, row):
 		pass
 
 	def predict(self, data):
 		predictions = []
 		for row in data:
-			predictions.append(self.predict(row))
+			predictions.append(self.predictRow(row))
 		return predictions
 
 	def exportTree(self):
