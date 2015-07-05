@@ -2,6 +2,7 @@
 # http://www.csse.monash.edu.au/courseware/cse5230/2004/assets/decisiontreesTute.pdf
 # https://github.com/NinjaSteph/DecisionTree/blob/master/src/DecisionTree.py
 # http://www.jdxyw.com/?p=2095
+# https://en.wikipedia.org/wiki/ID3_algorithm
 
 from __future__ import division
 import pandas as pd
@@ -47,9 +48,8 @@ class DecisionTree:
 				feature = col
 		return feature
 
-	# @todo - make this faster
 	def majority(self, dataset, targetAttribute):
-		return dataset[targetAttribute].value_counts().keys()[0]
+		return dataset[targetAttribute].value_counts().keys()[0] # @todo - make this faster
 
 	def buildTree(self, dataset):
 		vals = dataset[self.outputCol]
