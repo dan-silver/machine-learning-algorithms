@@ -8,11 +8,33 @@ from __future__ import division
 import pandas as pd
 import math
 
-class DecisionTree:
+class Model:
 	def loadCSV(self, filename, outputCol):
 		self.data = pd.read_csv(filename)
 		self.outputCol = outputCol
 
+	def majority(self, dataset, targetAttribute):
+		return dataset[targetAttribute].value_counts().idxmax()
+
+	def exportModel(self):
+		return self.model
+
+	def saveTree(self):
+		pass
+
+	def loadTree(self):
+		pass
+
+	def addData(self, data):
+		pass
+
+	def predict(self, data):
+		predictions = []
+		for row in data:
+			predictions.append(self.predictRow(row))
+		return predictions
+
+class DecisionTree(Model):
 	def entropy(self, dataset, targetAttribute):
 		e = 0.0
 		length = len(dataset.index)
@@ -48,15 +70,11 @@ class DecisionTree:
 				feature = col
 		return feature
 
-	def majority(self, dataset, targetAttribute):
-		return dataset[targetAttribute].value_counts().keys()[0] # @todo - make this faster
-
 	def buildTree(self, dataset):
 		vals = dataset[self.outputCol]
-		defaultAttribute = self.majority(dataset, self.outputCol)
 
 		if dataset.empty or len(dataset.columns) <= 1:
-			return defaultAttribute
+			return self.majority(dataset, self.outputCol)
 		elif len(pd.unique(vals)) == 1:
 			return vals.values[0]
 		else:
@@ -71,25 +89,7 @@ class DecisionTree:
 		return tree
 
 	def createTree(self):
-		self.tree = self.buildTree(self.data)
+		self.model = self.buildTree(self.data)
 
 	def predictRow(self, row):
-		pass
-
-	def predict(self, data):
-		predictions = []
-		for row in data:
-			predictions.append(self.predictRow(row))
-		return predictions
-
-	def exportTree(self):
-		return self.tree
-
-	def saveTree(self):
-		pass
-
-	def loadTree(self):
-		pass
-
-	def addData(self, data):
 		pass

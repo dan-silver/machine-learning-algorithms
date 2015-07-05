@@ -6,4 +6,4 @@ x.createTree()
 
 # print x.predict([3,4,5])
 
-print x.exportTree()
+print x.exportModel()
