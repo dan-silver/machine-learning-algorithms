@@ -1,4 +1,4 @@
-# Machine Learning Algorithm Implementations in Python
+## Machine Learning Algorithm Implementations in Python
 
 In progress:
 * [k-nearest neighbors](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)
