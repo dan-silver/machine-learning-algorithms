@@ -1,10 +1,6 @@
 import pandas as pd
 
 class Model:
-	def loadCSV(self, filename, outputCol, delimeter=','):
-		self.data = pd.read_csv(filename, sep=delimeter)
-		self.outputCol = outputCol
-
 	def majority(self, dataset, targetAttribute):
 		return dataset[targetAttribute].value_counts().idxmax()
 
@@ -25,3 +21,6 @@ class Model:
 		for row in data:
 			predictions.append(self.predictRow(row))
 		return predictions
+
+	def toJson(self):
+		pass

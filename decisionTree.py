@@ -37,34 +37,28 @@ class DecisionTree(Model):
 		feature = dataset.columns[0]
 		bestGain = 0
 		for col in dataset.columns:
-			if col == self.outputCol:
-				continue
 			colGain = self.gain(dataset, col)
 			if colGain > bestGain:
 				bestGain = colGain
 				feature = col
 		return feature
 
-	def buildTree(self, dataset):
-		vals = dataset[self.outputCol]
-
-		if dataset.empty or len(dataset.columns) <= 1:
-			return self.majority(dataset, self.outputCol)
-		elif len(pd.unique(vals)) == 1:
-			return vals.values[0]
+	def buildTree(self, trainX, trainY):
+		if trainX.empty or len(trainX.columns) <= 1:
+			return self.majority(trainX, self.outputCol)
+		elif len(pd.unique(trainY)) == 1:
+			return trainY.values[0]
 		else:
-			best = self.getBestFeatureToSplitOn(dataset)
+			best = self.getBestFeatureToSplitOn(trainX)
 			tree = {best:{}}
-			for val in dataset[best]:
-				examples = dataset[dataset[best] == val]
-				examples = examples.drop(best, 1)
-				subtree = self.buildTree(examples)
+			for val in trainX[best]:
+				# todo - select the corresponding values in trainY
+				examplesX = trainX[trainX[best] == val]
+				examplesX = examplesX.drop(best, 1)
+				subtree = self.buildTree(examplesX)
 
 				tree[best][val] = subtree
-		return tree
-
-	def createTree(self):
-		self.model = self.buildTree(self.data)
+		self.model = tree
 
 	def predictRow(self, row):
 		pass
