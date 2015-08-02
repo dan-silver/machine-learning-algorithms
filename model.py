@@ -1,26 +1,26 @@
 import pandas as pd
 
 class Model:
-	def majority(self, dataset, targetAttribute):
-		return dataset[targetAttribute].value_counts().idxmax()
+	def fit(self, trainX, trainY):
+		self.trainX = trainX
+		self.trainY = trainY
+
+	def predict(self, xs):
+		predictions = []
+		for row in xs:
+			predictions.append(self.predictRow(row))
+		return predictions
+
+
 
 	def exportModel(self):
 		return self.model
 
-	def saveTree(self):
+	def saveModel(self):
 		pass
 
-	def loadTree(self):
+	def loadModel(self):
 		pass
-
-	def addData(self, data):
-		pass
-
-	def predict(self, data):
-		predictions = []
-		for row in data:
-			predictions.append(self.predictRow(row))
-		return predictions
 
 	def toJson(self):
 		pass

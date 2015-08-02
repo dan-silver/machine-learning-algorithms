@@ -5,10 +5,10 @@ from decisionTree import DecisionTree
 from common import *
 
 data = loadData('iris.data')
-trainResult, trainData, testResult, testData = getTrainAndTestSets(data, 'class')
+train_label, train_features, test_label, test_features = getTrainAndTestSets(data, 'class')
 
 x = DecisionTree()
-x.buildTree(trainData, trainResult)
+x.buildTree(train_features, train_label)
 
 # print x.predict([[3,4,5]])
 

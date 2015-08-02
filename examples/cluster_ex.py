@@ -1,15 +1,15 @@
 import sys
 sys.path.append("..") 
-from decisionTree import DecisionTree
+from knn import NearestNeighbor
 
 from common import *
 
 data = loadData('iris.data')
-trainResult, trainData, testResult, testData = getTrainAndTestSets(data, 'class')
+trainResult, trainData, testResult, testData = getTrainAndTestSets(data, 'class', trainPercent=0.8)
 
-# print data
-# x.createTree()
+x = NearestNeighbor()
+x.addData(trainData=trainData)
 
-# print x.predict([[3,4,5]])
 
-# print x.exportModel()
+
+import pdb; pdb.set_trace()
