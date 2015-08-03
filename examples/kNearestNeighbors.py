@@ -1,6 +1,6 @@
 import sys
 sys.path.append("..")
-from knn import NearestNeighbor
+from knn import *
 from common import *
 
 data = loadData('iris.data')
@@ -11,7 +11,6 @@ trainY, trainX = extractColumn(trainSet, 'class')
 testY, testX = extractColumn(testSet, 'class')
 
 nn = NearestNeighbor()
-nn.fit(trainX, trainY)
+nn.fit(trainX, trainY, k=4)
 
-a = nn.getNeighbors(testX.iloc[2], 5)
-print nn.getResponse(a)
+print nn.predictRow(testX.iloc[2])

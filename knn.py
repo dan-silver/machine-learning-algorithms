@@ -8,7 +8,7 @@ from model import Model
 from common import euclideanDistance, getMostCommonValue
 
 class NearestNeighbor(Model):
-	def getNeighbors(self, testInstance, k):
+	def getNeighbors(self, testInstance):
 		distances = []
 		# get distance to each point
 		for index, item in self.trainX.iterrows():
@@ -16,7 +16,7 @@ class NearestNeighbor(Model):
 			distances.append((index, dist))
 		distances.sort(key=operator.itemgetter(1)) #sort based on distance
 		neighbors = [] #indexes
-		for x in range(k):
+		for x in range(self.options['k']):
 			neighbors.append(distances[x][0])
 		return neighbors #indexes
 
@@ -32,9 +32,7 @@ class NearestNeighbor(Model):
 
 	# def buildModel(self, trainingData, k=3):
 	# 	for x in range(len(self.data)):
-	# 		neighbors = getNeighbors(trainingSet, testSet[x], k)
-	# 		result = getResponse(neighbors)
 	# 		predictions.append(result)
 
-	def predictRow(self, row):
-		pass
+	def predictRow(self, testX):
+		return self.getResponse(self.getNeighbors(testX))

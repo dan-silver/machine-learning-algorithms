@@ -1,17 +1,15 @@
 import pandas as pd
 
 class Model:
-	def fit(self, trainX, trainY):
+	def fit(self, trainX, trainY, **options):
 		self.trainX = trainX
 		self.trainY = trainY
+		self.options = options
 
-	def predict(self, xs):
+	def predict(self, testX):
 		predictions = []
-		for row in xs:
-			predictions.append(self.predictRow(row))
+		[predictions.append(self.predictRow(row)) for row in testX]
 		return predictions
-
-
 
 	def exportModel(self):
 		return self.model
