@@ -23,7 +23,7 @@ class NearestNeighbor(Model):
 	def getResponse(self, neighbors):
 		classVotes = {}
 		for neighbor in neighbors:
-			response = self.trainY.iloc[neighbor]
+			response = self.trainY.ix[neighbor]
 			if response in classVotes:
 				classVotes[response] += 1
 			else:

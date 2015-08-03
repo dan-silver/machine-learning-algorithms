@@ -57,3 +57,11 @@ def euclideanDistance(data1, data2):
 def getMostCommonValue(dict):
 	sortedVotes = sorted(dict.iteritems(), key=operator.itemgetter(1), reverse=True)
 	return sortedVotes[0][0]
+
+
+def getAccuracy(testY, predictions):
+	correct = 0
+	for idx, item in enumerate(testY.values):
+		if item == predictions[idx]:
+			correct += 1
+	return (correct/float(len(testY.values))) * 100.0

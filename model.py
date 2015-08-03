@@ -8,7 +8,8 @@ class Model:
 
 	def predict(self, testX):
 		predictions = []
-		[predictions.append(self.predictRow(row)) for row in testX]
+		for index, row in testX.iterrows():
+			predictions.append(self.predictRow(row))
 		return predictions
 
 	def exportModel(self):

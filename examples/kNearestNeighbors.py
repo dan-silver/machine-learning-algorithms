@@ -13,4 +13,11 @@ testY, testX = extractColumn(testSet, 'class')
 nn = NearestNeighbor()
 nn.fit(trainX, trainY, k=4)
 
-print nn.predictRow(testX.iloc[2])
+# print nn.predictRow(testX.iloc[2])
+
+predictions = nn.predict(testX)
+
+print predictions
+
+accuracy = getAccuracy(testY, predictions)
+print('Accuracy: ' + repr(accuracy) + '%')
