@@ -30,9 +30,5 @@ class NearestNeighbor(Model):
 				classVotes[response] = 1
 		return getMostCommonValue(classVotes)
 
-	# def buildModel(self, trainingData, k=3):
-	# 	for x in range(len(self.data)):
-	# 		predictions.append(result)
-
 	def predictRow(self, testX):
 		return self.getResponse(self.getNeighbors(testX))
