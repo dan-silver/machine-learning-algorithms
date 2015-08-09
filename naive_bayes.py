@@ -18,21 +18,19 @@ class NaiveBayes(Model):
 		return split
 
 
+	# Given a hash of the data split by class value (keys are class vals, values are row indices),
+	# calc the mean and standard deviation for each attribute for each row set
 	def stats(self, df):
 		# loop over class values
 		stats = {}
 		for classValue, rowIndices in df.iteritems():
 			stats[classValue] = {}
-			means = self.trainX[self.trainX.index.isin(rowIndices)].mean()
-
-			for attr in list(self.trainX.columns.values):
-				stats[classValue][attr] = {"mean":means[attr], "stdev":None}
+			rows  = self.trainX[self.trainX.index.isin(rowIndices)]
+			means = rows.mean()
+			stdev = rows.std()
+			for attr, val in means.iteritems():
+				stats[classValue][attr] = {"mean":val, "stdev":stdev[attr]}
 		return stats
-
-	# def summarize(dataset):
-	# 	summaries = [(mean(attribute), stdev(attribute)) for attribute in dataset)]
-	# 	del summaries[-1]
-	# 	return summaries
 
 	def predictRow(self, testX):
 		pass
