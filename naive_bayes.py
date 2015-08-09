@@ -12,11 +12,33 @@ class NaiveBayes(Model):
 	def splitDataByResult(self):
 		split = {}
 		for index, item in self.trainY.iteritems():
-			print item
 			if item not in split:
 				split[item] = []
 			split[item].append(index)
 		return split
 
+
+	def stats(self, df):
+		# loop over class values
+		stats = {}
+		for classValue, rowIndices in df.iteritems():
+			stats[classValue] = {}
+			means = self.trainX[self.trainX.index.isin(rowIndices)].mean()
+
+			for attr in list(self.trainX.columns.values):
+				stats[classValue][attr] = {"mean":means[attr], "stdev":None}
+		return stats
+
+	# def summarize(dataset):
+	# 	summaries = [(mean(attribute), stdev(attribute)) for attribute in dataset)]
+	# 	del summaries[-1]
+	# 	return summaries
+
 	def predictRow(self, testX):
 		pass
+
+	def fit(self, trainX, trainY, **options):
+		super(NaiveBayes, self).fit(trainX, trainY, **options)
+		dataByClassValue = self.splitDataByResult()
+		a = self.stats(dataByClassValue)
+		import pdb; pdb.set_trace()

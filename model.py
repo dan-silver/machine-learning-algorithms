@@ -1,6 +1,6 @@
 import pandas as pd
 
-class Model:
+class Model(object):
 	def fit(self, trainX, trainY, **options):
 		self.trainX = trainX
 		self.trainY = trainY
