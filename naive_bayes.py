@@ -5,6 +5,7 @@ from __future__ import division
 import pandas as pd
 import operator
 from model import Model
+import math
 
 class NaiveBayes(Model):
 
@@ -32,11 +33,30 @@ class NaiveBayes(Model):
 				stats[classValue][attr] = {"mean":val, "stdev":stdev[attr]}
 		return stats
 
+	def calculateProbability(self, x, mean, stdev):
+		exponent = math.exp(-(math.pow(x-mean,2)/(2*math.pow(stdev,2))))
+		return (1 / (math.sqrt(2*math.pi) * stdev)) * exponent
+
+	def calculateClassProbabilities(self, testX):
+		probabilities = {}
+		for classValue, classSummaries in self.summaries.iteritems():
+			probabilities[classValue] = 1
+			for attr, stats in classSummaries.iteritems():
+				x = testX[attr]
+				probabilities[classValue] *= self.calculateProbability(x, stats['mean'], stats['stdev'])
+		return probabilities
+
+
 	def predictRow(self, testX):
-		pass
+		probabilities = self.calculateClassProbabilities(testX)
+		bestLabel, bestProb = None, -1
+		for classValue, probability in probabilities.iteritems():
+			if bestLabel is None or probability > bestProb:
+				bestProb = probability
+				bestLabel = classValue
+		return bestLabel
 
 	def fit(self, trainX, trainY, **options):
 		super(NaiveBayes, self).fit(trainX, trainY, **options)
 		dataByClassValue = self.splitDataByResult()
-		a = self.stats(dataByClassValue)
-		import pdb; pdb.set_trace()
+		self.summaries = self.stats(dataByClassValue)
