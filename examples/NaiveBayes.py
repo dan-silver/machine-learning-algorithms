@@ -1,9 +1,7 @@
-from __future__ import division
 import sys
 sys.path.append("..")
 from naive_bayes import NaiveBayes
-from common import *
-import pandas as pd
+from common import loadData, splitData, extractColumn, getAccuracy
 
 data = loadData('iris.data')
 
