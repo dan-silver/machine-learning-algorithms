@@ -1,8 +1,13 @@
 ## Machine Learning Algorithm Implementations in Python
 
+See the examples directory for sample code using the [iris dataset](https://archive.ics.uci.edu/ml/datasets/Iris).
+
+Completed
+* Naive Bayes
+* K-nearest neighbors
+
 In progress:
-* [k-nearest neighbors](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm)
-* Decision tree in [ID3](https://en.wikipedia.org/wiki/ID3_algorithm)
+* Decision tree with ID3
 
 Todo:
 * [Artificial neural network](https://en.wikipedia.org/wiki/Artificial_neural_network)
