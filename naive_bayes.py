@@ -60,3 +60,4 @@ class NaiveBayes(Model):
 		super(NaiveBayes, self).fit(trainX, trainY, **options)
 		dataByClassValue = self.splitDataByResult()
 		self.summaries = self.stats(dataByClassValue)
+		return self

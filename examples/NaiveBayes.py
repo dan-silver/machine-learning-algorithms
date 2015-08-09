@@ -11,9 +11,7 @@ trainY, trainX = extractColumn(trainSet, 'class')
 testY, testX = extractColumn(testSet, 'class')
 
 cf = NaiveBayes()
-cf.fit(trainX, trainY)
-
-predictions = cf.predict(testX)
+predictions = cf.fit(trainX, trainY).predict(testX)
 
 accuracy = getAccuracy(testY, predictions)
 print('Accuracy: ' + repr(accuracy) + '%')

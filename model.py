@@ -5,6 +5,7 @@ class Model(object):
 		self.trainX = trainX
 		self.trainY = trainY
 		self.options = options
+		return self
 
 	def predict(self, testX):
 		predictions = []
