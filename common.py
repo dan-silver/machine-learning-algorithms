@@ -1,5 +1,3 @@
-# https://gist.github.com/boates/5127281
-
 import pandas as pd
 import math
 import operator
@@ -8,6 +6,7 @@ def majority(dataset, targetAttribute):
 	return dataset[targetAttribute].value_counts().idxmax()
 
 def splitData(df, trainPercent):
+    # https://gist.github.com/boates/5127281
 	"""
 	return: train, test
 			(as pandas dataframes)

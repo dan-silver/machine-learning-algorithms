@@ -10,8 +10,7 @@ trainSet, testSet = splitData(data, 0.66)
 trainY, trainX = extractColumn(trainSet, 'class')
 testY, testX = extractColumn(testSet, 'class')
 
-cf = NaiveBayes()
-predictions = cf.fit(trainX, trainY).predict(testX)
+predictions = NaiveBayes().fit(trainX, trainY).predict(testX)
 
 accuracy = getAccuracy(testY, predictions)
 print('Accuracy: ' + repr(accuracy) + '%')
