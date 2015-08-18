@@ -50,7 +50,6 @@ def euclideanDistance(data1, data2):
 		distance += pow((data1[x] - data2[x]), 2)
 	return math.sqrt(distance)
 
-
 # ex: stats = {'a':1000, 'b':3000, 'c': 100}
 #     returns b
 def getMostCommonValue(dict):
@@ -64,3 +63,12 @@ def getAccuracy(testY, predictions):
 		if item == predictions[idx]:
 			correct += 1
 	return (correct/float(len(testY.values))) * 100.0
+
+def gridSearch(classifiers, testX, testY):
+	results = []
+	for classifier in classifiers:
+		predictions = classifier.predict(testX)
+		accuracy = getAccuracy(testY, predictions)
+		results.append((classifier, accuracy))
+
+	return sorted(results, key=operator.itemgetter(1))
