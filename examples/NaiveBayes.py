@@ -1,7 +1,7 @@
 import sys
 sys.path.append("..")
 from naive_bayes import NaiveBayes
-from common import loadData, splitData, extractColumn, getAccuracy
+from testing import loadData, splitData, extractColumn, getAccuracy
 
 data = loadData('iris.data')
 

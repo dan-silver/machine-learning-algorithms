@@ -3,7 +3,7 @@ sys.path.append("..")
 
 from knn import NearestNeighbor
 from naive_bayes import NaiveBayes
-from common import loadData, splitData, extractColumn, gridSearch
+from testing import loadData, splitData, extractColumn, gridSearch
 import operator
 
 data = loadData('iris.data')
