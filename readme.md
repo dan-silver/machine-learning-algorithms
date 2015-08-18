@@ -3,12 +3,10 @@
 See the examples directory for sample code using the [iris dataset](https://archive.ics.uci.edu/ml/datasets/Iris).
 
 Completed
-* Naive Bayes
-* K-nearest neighbors
-
-In progress:
-* Decision tree with ID3
+* Naive bayes [example](https://github.com/dan-silver/machine-learning-implementations/blob/master/examples/NaiveBayes.py) | [implementation](https://github.com/dan-silver/machine-learning-implementations/blob/master/naive_bayes.py)
+* K-nearest neighbors [example](https://github.com/dan-silver/machine-learning-implementations/blob/master/examples/kNearestNeighbors.py) | [implementation](https://github.com/dan-silver/machine-learning-implementations/blob/master/knn.py)
 
 Todo:
-* [Artificial neural network](https://en.wikipedia.org/wiki/Artificial_neural_network)
-* [Support vector machine](https://en.wikipedia.org/wiki/Support_vector_machine)
+* Artificial neural network
+* SVM/SVC
+* Decision tree
